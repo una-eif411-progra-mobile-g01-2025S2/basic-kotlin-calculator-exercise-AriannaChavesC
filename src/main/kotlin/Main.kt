@@ -1,17 +1,30 @@
 package org.example
 
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 fun main() {
-    val name = "Kotlin"
-    //TIP Press <shortcut actionId="ShowIntentionActions"/> with your caret at the highlighted text
-    // to see how IntelliJ IDEA suggests fixing it.
-    println("Hello, " + name + "!")
+    val calculator = Calculator()
 
-    for (i in 1..5) {
-        //TIP Press <shortcut actionId="Debug"/> to start debugging your code. We have set one <icon src="AllIcons.Debugger.Db_set_breakpoint"/> breakpoint
-        // for you, but you can always add more by pressing <shortcut actionId="ToggleLineBreakpoint"/>.
-        println("i = $i")
+    println("=== Kotlin Calculator ===")
+
+    print("Ingrese el primer número: ")
+    val inputA = readLine()?.toDoubleOrNull()
+    print("Ingrese el segundo número: ")
+    val inputB = readLine()?.toDoubleOrNull()
+
+    if (inputA == null || inputB == null) {
+        println("Entrada inválida. Por favor ingrese números válidos.")
+        return
     }
-    println("prueba")
+
+    val a = inputA
+    val b = inputB
+
+    println("Suma: $a + $b = ${calculator.add(a, b)}")
+    println("Resta: $a - $b = ${calculator.subtract(a, b)}")
+    println("Multiplicación: $a * $b = ${calculator.multiply(a, b)}")
+
+    try {
+        println("División: $a / $b = ${calculator.divide(a, b)}")
+    } catch (e: IllegalArgumentException) {
+        println("Error en división: ${e.message}")
+    }
 }
